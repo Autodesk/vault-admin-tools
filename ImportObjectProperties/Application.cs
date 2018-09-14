@@ -65,7 +65,6 @@ namespace ImportObjectProperties
         private VDF.Vault.Currency.Connections.Connection Connection { get; set; }
         private IExplorerUtil ExplorerUtil { get; set; }
 
-        //private FixedLfCycDef WorkInProgressState { get; set; }
         private PropDef TitleProperty { get; set; }
         private PropDef DescriptionProperty { get; set; }
         private PropDef UnitsProperty { get; set; }
@@ -490,7 +489,7 @@ namespace ImportObjectProperties
                 ByteArray[] tickets = ServiceManager.DocumentService.GetDownloadTicketsByFileIds(new long[] { theFile.Id });
                 ByteArray ticket = tickets[0];
 
-                #region Separate properties in mapped and unmapped property collections
+                #region Separate properties into mapped and unmapped property collections
                 for (int i = 0; i < propIds.Count; i++)
                 {
 
@@ -552,8 +551,7 @@ namespace ImportObjectProperties
                 }
                 IEnumerable<FileAssocParam> fileAssociations = GetFileReferences(ServiceManager.DocumentService, theFile.Id);
 
-                ServiceManager.DocumentService.CheckoutFile(file.Id, CheckoutFileOptions.Master,
-                Environment.MachineName, string.Empty, "Check out for property editing", out fileContents);
+                ServiceManager.DocumentService.CheckoutFile(file.Id, CheckoutFileOptions.Master, Environment.MachineName, string.Empty, "Check out for property editing", out fileContents);
 
                 #region VSK-534 - Update BOM mapped properties
                 BOM bom = ServiceManager.DocumentService.GetBOMByFileId(file.Id); 
@@ -625,7 +623,7 @@ namespace ImportObjectProperties
             string lfCycDef = row.Field<string>(LIFECYCLEDEF);
             if (string.IsNullOrWhiteSpace(lfCycDef))
             {
-                Log(MessageCategory.Debug, "No life cycle definition in input file - will not update life cycle");
+                Log(MessageCategory.Debug, "No lifecycle definition in input file - will not update lifecycle");
             }
 
             string lfCycState = row.Field<string>(LIFECYCLESTATE);
@@ -661,13 +659,13 @@ namespace ImportObjectProperties
                 }
                 catch (Exception)
                 {
-                    Log(MessageCategory.Error, "Could not assign new life cycle definition {0} or state {1} to file ", lfCycDef, lfCycState);
+                    Log(MessageCategory.Error, "Could not assign new lifecycle definition {0} or state {1} to file ", lfCycDef, lfCycState);
                     throw;
                 }
             }
             else
             {
-                Log(MessageCategory.Info, "No values found for {0} or {1}. Could not change life cycle (definition) of the file", LIFECYCLEDEF, LIFECYCLESTATE);
+                Log(MessageCategory.Info, "No values found for {0} or {1}. Could not change lifecycle (definition) of the file", LIFECYCLEDEF, LIFECYCLESTATE);
             }
             return theFile;
         }
@@ -854,7 +852,7 @@ namespace ImportObjectProperties
                     }
                 }
 
-                // first add properties which doesn't exist on item yet
+                // first add properties which don't exist on item yet
                 if (addedPropDefIds.Count > 0)
                 {
                     IEnumerable<long> masterIds = editableItems.Select(i => i.MasterId);
@@ -882,7 +880,7 @@ namespace ImportObjectProperties
                             editableItem.Title = title;
                             }
                         }
-                    // update descriptiob
+                    // update description
                     if (string.IsNullOrEmpty(description) == false)
                         {
                         foreach (Item editableItem in editableItems)
@@ -1093,14 +1091,14 @@ namespace ImportObjectProperties
 
             if (string.IsNullOrWhiteSpace(definitionName))
             {
-                Log(MessageCategory.Debug, "No life cycle definition in input file - will not update life cycle.");
+                Log(MessageCategory.Debug, "No lifecycle definition in input file - will not update lifecycle.");
                 return entity;
             }
             string stateName = row.Field<string>(LIFECYCLESTATE);
 
             if (string.IsNullOrWhiteSpace(stateName))
             {
-                Log(MessageCategory.Debug, "No life cycle satte in input file - will not update life cycle.");
+                Log(MessageCategory.Debug, "No lifecycle state in input file - will not update lifecycle.");
                 return entity;
             }
             LfCycDef def = LfCycDefs.FirstOrDefault(d => string.Equals(d.DispName, definitionName, StringComparison.InvariantCultureIgnoreCase));
