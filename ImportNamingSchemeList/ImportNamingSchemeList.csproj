@@ -56,9 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\common\VersionInfo.cs">
-      <Link>Properties\VersionInfo.cs</Link>
-    </Compile>
     <Compile Include="Application.cs" />
     <Compile Include="ApplicationOptions.cs" />
     <Compile Include="ConsoleLogger.cs" />

@@ -11,5 +11,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Distributed under MIT license without any warranty")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("17.0.0")]
-[assembly: AssemblyFileVersion("17.0.0")]
+[assembly: AssemblyVersion("22.0.0")]
+[assembly: AssemblyFileVersion("22.0.0")]
