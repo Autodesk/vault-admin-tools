@@ -2,7 +2,7 @@
 Admin and Migration Tools for Autodesk® Vault
 
 ## What the tools are
-The tools provided here are command line utilities that are useful when setting up an Autodesk® Vault, administering it or migratiing data into a Vault.
+The tools provided here are command line utilities that are useful when setting up an Autodesk® Vault, administering it or migrating data into a Vault.
 
 | Utility Name | Purpose |
 | ------- | ------- |
